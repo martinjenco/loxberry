@@ -2,7 +2,7 @@ FROM resin/rpi-raspbian:jessie
 
 LABEL maintainer="Michael Miklis / <info@michaelmiklis.de>"
 
-RUN [ "cross-build-start" ]
+#RUN [ "cross-build-start" ]
 
 ENV  DEBIAN_FRONTEND noninteractive
 
@@ -43,13 +43,6 @@ RUN adduser --quiet --home /opt/loxberry --no-create-home --disabled-password --
     cpan install File::HomeDir Config::Simple && \
     # 
     # **************************
-    # Remove NTP
-    # **************************
-    apt-get remove ntp && \
-    update-rc.d ntp remove && \
-    apt-get install -y --no-install-recommends ntpdate && \
-    #
-    # **************************
     # Grant loxberry account permissions on files
     # **************************
     chown loxberry.loxberry /etc/timezone && \
@@ -82,10 +75,10 @@ RUN adduser --quiet --home /opt/loxberry --no-create-home --disabled-password --
     apt-get autoclean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* 
 
-RUN [ "cross-build-end" ]
+#RUN [ "cross-build-end" ]
     
-# Allow access to port 80
-EXPOSE 80
+# Allow access to port 80 (http), 21 (ftp), 22 (ssh)
+EXPOSE 80 21 22
 
 # Start rpimonitord using run.sh wrapper script
 ADD run.sh /run.sh
