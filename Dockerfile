@@ -2,7 +2,7 @@ FROM resin/rpi-raspbian:stretch
 
 LABEL maintainer="Michael Miklis / <info@michaelmiklis.de>"
 
-RUN [ "cross-build-start" ]
+#RUN [ "cross-build-start" ]
 
 ENV container docker
 ENV LC_ALL C
@@ -150,13 +150,13 @@ RUN echo "start" && \
     # Cleanup
     # **************************
     rm -rf /var/cache/apt/archives/*  && \
-    /opt/loxberry/sbin/createskelfolders.pl && \
+    su -c "/opt/loxberry/sbin/createskelfolders.pl" root && \
     rm -rf /opt/loxberry/.git*  && \
     apt-get clean && \
     apt-get autoclean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* 
 
-RUN [ "cross-build-end" ]
+#RUN [ "cross-build-end" ]
 
 # Allow access to port 80 (http), 21 (ftp), 22 (ssh), 137 138 445 (SMB)
 EXPOSE 80 21 22 137/udp 138/udp 139 445
