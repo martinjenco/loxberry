@@ -51,7 +51,7 @@ RUN echo "start" && \
     # Add RaspberryPi repository for apt
     # **************************
     apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 82B129927FA3303E && \
-    echo "deb http://archive.raspberrypi.org/debian/ stretch main ui" >> /etc/apt/sources.list.d/raspi.list  && \
+    echo "deb http://archive.raspberrypi.org/debian/ stretch main ui" > /etc/apt/sources.list.d/raspi.list  && \
     apt-get -y update && \
     #
     #
