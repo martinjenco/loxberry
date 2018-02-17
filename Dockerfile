@@ -14,7 +14,7 @@ RUN echo "start" && \
     # Setup systemd
     # **************************
     cd /lib/systemd/system/sysinit.target.wants/; ls | grep -v systemd-tmpfiles-setup | xargs rm -f $1 && \
-    rm -f /lib/systemd/system/multi-user.target.wants/* && \
+    #rm -f /lib/systemd/system/multi-user.target.wants/* && \
     rm -f /etc/systemd/system/*.wants/* && \
     rm -f /lib/systemd/system/local-fs.target.wants/*  && \
     rm -f /lib/systemd/system/sockets.target.wants/*udev*  && \
@@ -71,6 +71,7 @@ RUN echo "start" && \
     # Setting platform
     # **************************
     echo "raspberry" > /opt/loxberry/config/system/is_raspberry.cfg && \
+    echo "Docker-Raspberry" > /opt/loxberry/config/system/is_raspdocker.cfg && \
     #
     #
     # **************************
