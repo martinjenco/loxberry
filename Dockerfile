@@ -138,7 +138,7 @@ RUN echo "start" && \
     # RSYSLOG
     # **************************
     sed -i 's/WorkDirectory \/var\/spool\/rsyslog/WorkDirectory \/tmp/g' /etc/rsyslog.conf && \
-    sed -i '/*.*;auth,authpriv.none/c\*.*;auth,authpriv.none;cron,daemon.none;	-/var/log/syslog' /etc/rsyslog.test
+    sed -i '/*.*;auth,authpriv.none/c\*.*;auth,authpriv.none;cron,daemon.none;	-/var/log/syslog' /etc/rsyslog.conf && \
     #
     #
     # **************************
