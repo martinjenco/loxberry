@@ -14,7 +14,6 @@ RUN echo "start" && \
     # Setup systemd
     # **************************
     cd /lib/systemd/system/sysinit.target.wants/; ls | grep -v systemd-tmpfiles-setup | xargs rm -f $1 && \
-    #rm -f /lib/systemd/system/multi-user.target.wants/* && \
     rm -f /etc/systemd/system/*.wants/* && \
     rm -f /lib/systemd/system/local-fs.target.wants/*  && \
     rm -f /lib/systemd/system/sockets.target.wants/*udev*  && \
@@ -136,9 +135,10 @@ RUN echo "start" && \
     #
     #
     # **************************
-    # RSYSLOG (incomplete)
+    # RSYSLOG
     # **************************
     sed -i 's/WorkDirectory \/var\/spool\/rsyslog/WorkDirectory \/tmp/g' /etc/rsyslog.conf && \
+    sed -i '/*.*;auth,authpriv.none/c\*.*;auth,authpriv.none;cron,daemon.none;	-/var/log/syslog' /etc/rsyslog.test
     #
     #
     # **************************
